@@ -6,9 +6,8 @@ import (
 )
 
 type HttpServer struct {
-	*echo.Echo // тип Сервера
-	address    string
-	Usecase    Usecase_1
+	*echo.Echo
+	address string
 }
 
 func New(address string) *HttpServer {
@@ -28,11 +27,10 @@ func (h *HttpServer) StartHttpServer() {
 }
 
 func (h *HttpServer) AddRoute() {
-
 	version := h.Group("/v1")
 	{
-		version.GET("/AuthService", h.authService)
+		version.GET("/authService", h.autharization)
 
-		version.GET("/SendMessage", h.sendMessage)
+		version.GET("/sendMessage", h.sendMessage)
 	}
 }
